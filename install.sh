@@ -98,10 +98,11 @@ fi
 
 if [ -x "$path_to_nvcc" ] || [ -x "$path_to_nvidiasmi" ]
 then
-    echo "Found CUDA on your machine. Installing CMake 3.6 modules to get up-to-date FindCUDA"
-    cd ${THIS_DIR}/cmake/3.6 && \
+    echo "Found CUDA on your machine. Installing CMake 3.16 modules to get up-to-date FindCUDA"
+    cd ${THIS_DIR}/cmake/3.16 && ln -s /usr/share/cmake-3.16/Modules Modules
+    cd ${THIS_DIR}/cmake/3.16 && \
 (cmake -E make_directory build && cd build && cmake .. -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
-        && make install) && echo "FindCuda bits of CMake 3.6 installed" || exit 1
+        && make install) && echo "FindCuda bits of CMake 3.16 installed" || exit 1
 fi
 
 setup_lua_env_cmd=$($PREFIX/bin/luarocks path)
